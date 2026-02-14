@@ -1,11 +1,17 @@
-import { useState, useCallback, useMemo } from 'react';
+import { useState, useCallback, useMemo, useEffect } from 'react';
 import { AnimatePresence } from 'framer-motion';
 import './index.css';
+import config from './config';
+
+// Set document title from config
+if (typeof document !== 'undefined') {
+  document.title = config.site.title;
+}
 
 import AmbientBackground from './components/AmbientBackground';
 import CinematicEntry from './components/CinematicEntry';
 import HeartAffirmation from './components/HeartAffirmation';
-import MemoryGallery from './components/MemoryGallery';
+import LoveNotes from './components/LoveNotes';
 import LoveTimeline from './components/LoveTimeline';
 import FinalReveal from './components/FinalReveal';
 
@@ -48,7 +54,7 @@ function App() {
         )}
 
         {currentStage === STAGES.MEMORY && (
-          <MemoryGallery
+          <LoveNotes
             key="memory"
             onComplete={() => goToStage(STAGES.TIMELINE)}
           />
@@ -78,6 +84,8 @@ function App() {
 
 // Final celebration screen with particle effects
 function Celebration() {
+  const { thankYouMessage, description, closing } = config.celebration;
+
   // Pre-compute random values for floating hearts
   const floatingHearts = useMemo(() =>
     [...Array(12)].map((_, i) => ({
@@ -144,7 +152,7 @@ function Celebration() {
             textShadow: '0 0 40px rgba(216, 167, 177, 0.4)',
           }}
         >
-          Thank you for being mine.
+          {thankYouMessage}
         </h1>
 
         <p
@@ -154,7 +162,7 @@ function Celebration() {
             color: 'rgba(237, 213, 217, 0.7)',
           }}
         >
-          Here's to us, to every moment past and every moment yet to come.
+          {description}
         </p>
 
         <div
@@ -169,7 +177,7 @@ function Celebration() {
             color: 'rgba(216, 167, 177, 0.6)',
           }}
         >
-          Forever yours
+          {closing}
         </p>
       </div>
     </div>

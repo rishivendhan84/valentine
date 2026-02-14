@@ -1,6 +1,8 @@
 import { motion } from 'framer-motion';
+import config from '../config';
 
 const CinematicEntry = ({ onOpen }) => {
+  const { heading, subtitle, buttonText } = config.entry;
   return (
     <motion.section
       initial={{ opacity: 0 }}
@@ -85,7 +87,7 @@ const CinematicEntry = ({ onOpen }) => {
           className="heading-serif-italic text-warm-cocoa mb-6"
           style={{ fontSize: 'clamp(1.8rem, 6vw, 3.2rem)' }}
         >
-          I made something for you.
+          {heading}
         </motion.h1>
 
         {/* Subtle subtitle */}
@@ -96,7 +98,7 @@ const CinematicEntry = ({ onOpen }) => {
           className="body-sans text-muted-wine/70 mb-16 max-w-xs"
           style={{ fontSize: 'clamp(0.9rem, 2.5vw, 1.05rem)' }}
         >
-          Something small, but from the heart.
+          {subtitle}
         </motion.p>
 
         {/* CTA Button with Glow */}
@@ -126,7 +128,7 @@ const CinematicEntry = ({ onOpen }) => {
             whileTap={{ scale: 0.98 }}
             className="btn-primary relative"
           >
-            Open it
+            {buttonText}
           </motion.button>
         </motion.div>
       </div>

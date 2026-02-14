@@ -1,14 +1,16 @@
 import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-
-const revealLines = [
-  "I don't just love you.",
-  "I choose you.",
-  "Every day.",
-  "Again.",
-];
+import config from '../config';
 
 const FinalReveal = ({ onYes }) => {
+  const {
+    revealLines,
+    question,
+    yesMessage,
+    noHoverMessage,
+    yesButtonText,
+    noButtonText,
+  } = config.finalReveal;
   const [currentLine, setCurrentLine] = useState(0);
   const [showQuestion, setShowQuestion] = useState(false);
   const [showButtons, setShowButtons] = useState(false);
@@ -156,7 +158,7 @@ const FinalReveal = ({ onYes }) => {
                 textShadow: '0 0 60px rgba(216, 167, 177, 0.4), 0 0 120px rgba(216, 167, 177, 0.2)',
               }}
             >
-              Will you be my Valentine?
+              {question}
             </motion.h1>
           )}
         </AnimatePresence>
@@ -185,7 +187,7 @@ const FinalReveal = ({ onYes }) => {
                   textShadow: '0 0 30px rgba(216, 167, 177, 0.3)',
                 }}
               >
-                You are my favorite chapter.
+                {yesMessage}
               </p>
             </motion.div>
           )}
@@ -228,7 +230,7 @@ const FinalReveal = ({ onYes }) => {
                   letterSpacing: '0.05em',
                 }}
               >
-                Yes
+                {yesButtonText}
               </motion.button>
             </div>
 
@@ -251,7 +253,7 @@ const FinalReveal = ({ onYes }) => {
                 letterSpacing: '0.05em',
               }}
             >
-              No
+              {noButtonText}
             </motion.button>
           </motion.div>
         )}
@@ -266,7 +268,7 @@ const FinalReveal = ({ onYes }) => {
             exit={{ opacity: 0 }}
             className="absolute bottom-24 heading-serif-italic text-soft-blush/70 text-sm"
           >
-            Try again...
+            {noHoverMessage}
           </motion.p>
         )}
       </AnimatePresence>

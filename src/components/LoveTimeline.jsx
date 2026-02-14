@@ -1,38 +1,8 @@
 import { useState, useRef, useEffect } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
+import config from '../config';
 
-const timelineEvents = [
-  {
-    id: 1,
-    title: "The Beginning",
-    text: "When our story started to unfold...",
-    date: "Day One",
-  },
-  {
-    id: 2,
-    title: "First Butterflies",
-    text: "That moment I knew you were special.",
-    date: "Soon After",
-  },
-  {
-    id: 3,
-    title: "Growing Closer",
-    text: "Every conversation made me fall harder.",
-    date: "With Time",
-  },
-  {
-    id: 4,
-    title: "The Realization",
-    text: "I couldn't imagine life without you.",
-    date: "One Day",
-  },
-  {
-    id: 5,
-    title: "Now",
-    text: "And here we are, still choosing each other.",
-    date: "Today",
-  },
-];
+const { events: timelineEvents } = config.loveTimeline;
 
 const TimelineEvent = ({ event, index, isActive, onClick }) => {
   return (
@@ -105,6 +75,7 @@ const TimelineEvent = ({ event, index, isActive, onClick }) => {
 };
 
 const LoveTimeline = ({ onComplete }) => {
+  const { heading, subtitle, swipeHint, completionMessage } = config.loveTimeline;
   const [activeId, setActiveId] = useState(1);
   const [viewedIds, setViewedIds] = useState([1]);
   const scrollContainerRef = useRef(null);
@@ -165,10 +136,10 @@ const LoveTimeline = ({ onComplete }) => {
           className="heading-serif text-warm-cocoa mb-2"
           style={{ fontSize: 'clamp(1.5rem, 5vw, 2.2rem)' }}
         >
-          Our story
+          {heading}
         </h2>
         <p className="body-sans text-muted-wine/60 text-sm">
-          Swipe through our journey
+          {subtitle}
         </p>
       </motion.div>
 
@@ -255,7 +226,7 @@ const LoveTimeline = ({ onComplete }) => {
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M7 16l-4-4m0 0l4-4m-4 4h18" />
           </svg>
         </motion.div>
-        <span className="body-sans text-muted-wine/50 text-xs">Swipe or tap</span>
+        <span className="body-sans text-muted-wine/50 text-xs">{swipeHint}</span>
         <motion.div
           animate={{ x: [5, -5, 5] }}
           transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
@@ -293,7 +264,7 @@ const LoveTimeline = ({ onComplete }) => {
             className="absolute bottom-16 text-center"
           >
             <p className="heading-serif-italic text-muted-wine" style={{ fontSize: 'clamp(0.95rem, 2.5vw, 1.1rem)' }}>
-              And the best chapters are yet to come...
+              {completionMessage}
             </p>
           </motion.div>
         )}

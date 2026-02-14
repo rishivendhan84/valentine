@@ -1,15 +1,9 @@
 import { useState, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-
-const affirmations = [
-  "You are my peace.",
-  "You are my favorite place.",
-  "You make ordinary days magical.",
-  "With you, I feel home.",
-  "You are my always.",
-];
+import config from '../config';
 
 const HeartAffirmation = ({ onComplete }) => {
+  const { instruction, unlockMessage, affirmations } = config.heartAffirmation;
   const [tapCount, setTapCount] = useState(0);
   const [currentAffirmation, setCurrentAffirmation] = useState('');
   const [ripples, setRipples] = useState([]);
@@ -73,7 +67,7 @@ const HeartAffirmation = ({ onComplete }) => {
         className="body-sans text-muted-wine/60 text-center mb-8"
         style={{ fontSize: 'clamp(0.85rem, 2vw, 0.95rem)' }}
       >
-        Tap the heart
+        {instruction}
       </motion.p>
 
       {/* Progress dots */}
@@ -258,7 +252,7 @@ const HeartAffirmation = ({ onComplete }) => {
             className="mt-8 heading-serif-italic text-muted-wine"
             style={{ fontSize: 'clamp(1rem, 3vw, 1.2rem)' }}
           >
-            Something unlocked...
+            {unlockMessage}
           </motion.p>
         )}
       </AnimatePresence>

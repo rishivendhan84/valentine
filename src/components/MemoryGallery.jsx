@@ -1,28 +1,8 @@
 import { useState, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import config from '../config';
 
-const memories = [
-  {
-    id: 1,
-    image: '/images/photo1.jpg',
-    caption: "The first time I saw you smile like that.",
-  },
-  {
-    id: 2,
-    image: '/images/photo2.jpg',
-    caption: "That look you give when you're pretending not to laugh.",
-  },
-  {
-    id: 3,
-    image: '/images/photo3.jpg',
-    caption: "This moment still lives rent-free in my heart.",
-  },
-  {
-    id: 4,
-    image: '/images/photo4.jpg',
-    caption: "When everything felt exactly right.",
-  }
-];
+const { memories } = config.memoryGallery;
 
 const MemoryCard = ({ memory, index, isRevealed, onReveal }) => {
   const [isHovered, setIsHovered] = useState(false);
@@ -183,6 +163,7 @@ const MemoryCard = ({ memory, index, isRevealed, onReveal }) => {
 };
 
 const MemoryGallery = ({ onComplete }) => {
+  const { heading, subtitle, completionMessage } = config.memoryGallery;
   const [revealedIds, setRevealedIds] = useState([]);
 
   const handleReveal = useCallback((id) => {
@@ -223,10 +204,10 @@ const MemoryGallery = ({ onComplete }) => {
           className="heading-serif text-warm-cocoa mb-2"
           style={{ fontSize: 'clamp(1.5rem, 5vw, 2.2rem)' }}
         >
-          Our moments
+          {heading}
         </h2>
         <p className="body-sans text-muted-wine/60 text-sm">
-          Tap each to reveal
+          {subtitle}
         </p>
       </motion.div>
 
@@ -269,7 +250,7 @@ const MemoryGallery = ({ onComplete }) => {
             className="mt-8 heading-serif-italic text-muted-wine text-center"
             style={{ fontSize: 'clamp(1rem, 3vw, 1.2rem)' }}
           >
-            Every moment with you is a treasure...
+            {completionMessage}
           </motion.p>
         )}
       </AnimatePresence>
