@@ -1,0 +1,369 @@
+@import "tailwindcss";
+
+/* ══════════════════════════════════════════════════════════════════════════════
+   PREMIUM VALENTINE 2026 — DESIGN SYSTEM
+   ══════════════════════════════════════════════════════════════════════════════ */
+
+@theme {
+  /* Premium Romantic Luxury Color System */
+  --color-warm-beige: #F6F1EB;
+  --color-rose-clay: #D8A7B1;
+  --color-muted-wine: #7A4E57;
+  --color-warm-cocoa: #4A2E2A;
+  --color-pearl-glow: #FFF8F5;
+  --color-deep-wine: #5C3A42;
+  --color-soft-blush: #EDD5D9;
+  --color-cream-pink: #F9E8E8;
+
+  /* Typography */
+  --font-serif: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
+  --font-sans: 'DM Sans', 'Inter', system-ui, sans-serif;
+
+  /* Animations */
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-breathe: cubic-bezier(0.45, 0, 0.55, 1);
+}
+
+/* ── Base Reset ── */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow: hidden;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--color-warm-cocoa);
+  background: var(--color-warm-beige);
+  overflow: hidden;
+  height: 100dvh;
+  width: 100vw;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Premium Noise Texture Overlay ── */
+.noise-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* ── Premium Typography ── */
+.heading-serif {
+  font-family: var(--font-serif);
+  font-weight: 300;
+  letter-spacing: 0.02em;
+  line-height: 1.2;
+}
+
+.heading-serif-italic {
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-style: italic;
+  letter-spacing: 0.02em;
+  line-height: 1.3;
+}
+
+.body-sans {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  line-height: 1.7;
+}
+
+/* ── Glass Morphism ── */
+.glass {
+  background: rgba(255, 248, 245, 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(216, 167, 177, 0.2);
+}
+
+.glass-dark {
+  background: rgba(92, 58, 66, 0.4);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(216, 167, 177, 0.15);
+}
+
+/* ── Magnetic Button Base ── */
+.btn-magnetic {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.4s var(--ease-smooth);
+}
+
+.btn-magnetic::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255, 255, 255, 0.15), transparent 50%);
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+
+.btn-magnetic:hover::before {
+  opacity: 1;
+}
+
+/* ── Primary CTA Button ── */
+.btn-primary {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 0.95rem;
+  padding: 18px 48px;
+  border: none;
+  border-radius: 100px;
+  background: linear-gradient(135deg, var(--color-rose-clay) 0%, var(--color-muted-wine) 100%);
+  color: var(--color-pearl-glow);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.5s var(--ease-smooth), box-shadow 0.5s var(--ease-smooth);
+  box-shadow:
+    0 4px 20px rgba(122, 78, 87, 0.2),
+    0 0 0 0 rgba(216, 167, 177, 0),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 12px 40px rgba(122, 78, 87, 0.3),
+    0 0 60px rgba(216, 167, 177, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.btn-primary:active {
+  transform: scale(0.98);
+}
+
+.btn-primary::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 50%);
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+
+.btn-primary:hover::after {
+  opacity: 1;
+}
+
+/* ── Secondary/Outline Button ── */
+.btn-outline {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 0.95rem;
+  padding: 16px 40px;
+  border: 1.5px solid rgba(216, 167, 177, 0.4);
+  border-radius: 100px;
+  background: transparent;
+  color: var(--color-muted-wine);
+  cursor: pointer;
+  transition: all 0.4s var(--ease-smooth);
+  letter-spacing: 0.05em;
+}
+
+.btn-outline:hover {
+  background: rgba(216, 167, 177, 0.1);
+  border-color: var(--color-rose-clay);
+}
+
+/* ── Floating Gradient Orbs ── */
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.orb-rose {
+  background: radial-gradient(circle, var(--color-rose-clay) 0%, transparent 70%);
+}
+
+.orb-wine {
+  background: radial-gradient(circle, var(--color-muted-wine) 0%, transparent 70%);
+}
+
+.orb-pearl {
+  background: radial-gradient(circle, var(--color-pearl-glow) 0%, transparent 70%);
+}
+
+/* ── Smooth Scrollbar ── */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-rose-clay);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-muted-wine);
+}
+
+/* ── Selection ── */
+::selection {
+  background: var(--color-rose-clay);
+  color: var(--color-pearl-glow);
+}
+
+/* ── Animations ── */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(2deg);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes breathe {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.02);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(0);
+    opacity: 0.6;
+  }
+  100% {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+/* ── Utility Classes ── */
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-breathe {
+  animation: breathe 4s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+/* ── Layer Depth Shadows ── */
+.shadow-soft {
+  box-shadow:
+    0 2px 8px rgba(74, 46, 42, 0.04),
+    0 8px 24px rgba(74, 46, 42, 0.08),
+    0 24px 48px rgba(74, 46, 42, 0.08);
+}
+
+.shadow-elevated {
+  box-shadow:
+    0 4px 12px rgba(74, 46, 42, 0.06),
+    0 16px 40px rgba(74, 46, 42, 0.12),
+    0 48px 80px rgba(74, 46, 42, 0.12);
+}
+
+/* ── Text Reveal Mask ── */
+.text-reveal {
+  clip-path: inset(0 100% 0 0);
+  animation: reveal 0.8s var(--ease-smooth) forwards;
+}
+
+@keyframes reveal {
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+/* ── Mobile Optimizations ── */
+@media (max-width: 768px) {
+  .btn-primary {
+    padding: 16px 36px;
+    font-size: 0.9rem;
+  }
+
+  .btn-outline {
+    padding: 14px 32px;
+    font-size: 0.9rem;
+  }
+}
+
+/* ── Prefers Reduced Motion ── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
